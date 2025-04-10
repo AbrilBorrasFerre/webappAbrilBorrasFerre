@@ -24,6 +24,9 @@ function canvia_seccio(num_boto) {
     }
     if (num_boto == 4) {
         mapa.invalidateSize();
+        if (typeof geoID === "undefined") {    // si encara no s'han obtingut les dades de localització del dispositiu
+            navigator.geolocation.watchPosition(geoExit);    // inicia el seguiment de la localització del dispositiu
+        }
     }
 }
 
@@ -209,5 +212,15 @@ function esborra_foto(id) {
                 canvia_seccio(3);    // es recarrega la galeria per tal que ja no mostri la foto esborrada
             };
         };
+    }
+}
+
+function geoExit(posicio){
+    let latitud = posicio.coords.latitude;
+    let longitud = posicio.coords.longitude;
+    if (typeof geoID === "undefined") {    
+        geoID = L.marker([latitud, longitud], {zIndexOffset:100, title:"Usuari"}).addTo(mapa);    // es defineix el marcador  geoID i es situa per sobre dels altres
+    } else {    // primeres dades de localització, es crea el marcador d'usuari 
+        geoID.setLatLng([latitud, longitud]);    // actualització de la posició del marcador d'usuari en el mapa
     }
 }
