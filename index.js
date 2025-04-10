@@ -3,6 +3,15 @@ let nom, contrasenya;
 let scriptURL = "https://script.google.com/macros/s/AKfycbzZmt6tt-4-EBVbDOeoz1eTS6aw2Dfpd74hXBmQK93ydk0C9CGaSDPgIkwmVz7aDppIgw/exec"    // s'ha de substituir la cadena de text per la URL del script
 
 function canvia_seccio(num_boto) {
+    if (num_boto == 3) {    // si es prem el botó de la secció "Galeria"
+        omple_llista();
+    }
+    if (num_boto == 4) {
+        mapa.invalidateSize();
+        if (typeof geoID === "undefined") {    // si encara no s'han obtingut les dades de localització del dispositiu
+            navigator.geolocation.watchPosition(geoExit);    // inicia el seguiment de la localització del dispositiu
+        }
+    }
     const menu = document.getElementById("menu");
     const num_botons = menu.children.length;    // el nombre de botons dins de l'element "menu"
     for (let i = 1; i < num_botons; i++) {
@@ -19,15 +28,7 @@ function canvia_seccio(num_boto) {
             seccio.style.display = "none";    // s'oculten les seccions inactives
         }
     }
-    if (num_boto == 3) {    // si es prem el botó de la secció "Galeria"
-        omple_llista();
-    }
-    if (num_boto == 4) {
-        mapa.invalidateSize();
-        if (typeof geoID === "undefined") {    // si encara no s'han obtingut les dades de localització del dispositiu
-            navigator.geolocation.watchPosition(geoExit);    // inicia el seguiment de la localització del dispositiu
-        }
-    }
+    
 }
 
 function inici_sessio() {
