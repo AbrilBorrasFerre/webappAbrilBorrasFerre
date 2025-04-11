@@ -3,15 +3,7 @@ let nom, contrasenya;
 let scriptURL = "https://script.google.com/macros/s/AKfycbzZmt6tt-4-EBVbDOeoz1eTS6aw2Dfpd74hXBmQK93ydk0C9CGaSDPgIkwmVz7aDppIgw/exec"    // s'ha de substituir la cadena de text per la URL del script
 
 function canvia_seccio(num_boto) {
-    if (num_boto == 3) {    // si es prem el botó de la secció "Galeria"
-        omple_llista();
-    }
-    if (num_boto == 4) {
-        mapa.invalidateSize();
-        if (typeof geoID === "undefined") {    // si encara no s'han obtingut les dades de localització del dispositiu
-            navigator.geolocation.watchPosition(geoExit);    // inicia el seguiment de la localització del dispositiu
-        }
-    }
+    
     const menu = document.getElementById("menu");
     const num_botons = menu.children.length;    // el nombre de botons dins de l'element "menu"
     for (let i = 1; i < num_botons; i++) {
@@ -26,6 +18,15 @@ function canvia_seccio(num_boto) {
             boto.style.color = "white";    // colors dels botons de seccions inactives
             boto.style.backgroundColor = "#950E17";
             seccio.style.display = "none";    // s'oculten les seccions inactives
+        }
+        if (num_boto == 3) {    // si es prem el botó de la secció "Galeria"
+            omple_llista();
+        }
+        if (num_boto == 4) {
+            mapa.invalidateSize();
+            if (typeof geoID === "undefined") {    // si encara no s'han obtingut les dades de localització del dispositiu
+                navigator.geolocation.watchPosition(geoExit);    // inicia el seguiment de la localització del dispositiu
+            }
         }
     }
     
@@ -94,6 +95,10 @@ function tanca_sessio() {
 }
 
 window.onload = () => { 
+    mapa = L.map("seccio_4").setView([41.72, 1.82], 8);    // assigna el mapa a la secció, centrat en el punt i amb el nivell de zoom
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {    // capa d'OpenStreetMap
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'    // autoria de la capa
+    }).addTo(mapa);    // s'afegeix la capa al mapa
     let base_de_dades = storage.getItem("base_de_dades");   
     if(base_de_dades == null) {
         indexedDB.open("Dades").onupgradeneeded = event => {   
@@ -117,10 +122,7 @@ window.onload = () => {
             }
         }
     });
-    mapa = L.map("seccio_4").setView([41.72, 1.82], 8);    // assigna el mapa a la secció, centrat en el punt i amb el nivell de zoom
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {    // capa d'OpenStreetMap
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'    // autoria de la capa
-    }).addTo(mapa);    // s'afegeix la capa al mapa
+    
 }
 
 function desa_foto() {
