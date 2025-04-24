@@ -1,7 +1,7 @@
 let validat = false;    // variable que permet saber si hi ha algun usuari validat
 let nom, contrasenya;
 let scriptURL = "https://script.google.com/macros/s/AKfycbzZmt6tt-4-EBVbDOeoz1eTS6aw2Dfpd74hXBmQK93ydk0C9CGaSDPgIkwmVz7aDppIgw/exec"    // s'ha de substituir la cadena de text per la URL del script
-
+let model, webcam, prediccions, maxPrediccions;
 let canvas_creat = false;
 let diagrama;
 let valors = [[],[]];
@@ -261,9 +261,8 @@ function geoExit(posicio){
 
 }
 
-
 async function inicia_video() {
-    const codi_model = "https://teachablemachine.withgoogle.com/models/JwBUbg1n7/"    // substitueix els asteriscs pel codi del model d'IA que vas crear en una activitat anterior
+    const codi_model = "JwBUbg1n7"    // substitueix els asteriscs pel codi del model d'IA que vas crear en una activitat anterior
     const tmURL = "https://teachablemachine.withgoogle.com/models/" + codi_model;
     const modelURL = tmURL + "/model.json";
     const metadataURL = tmURL + "/metadata.json";
