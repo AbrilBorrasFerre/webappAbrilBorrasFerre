@@ -187,7 +187,7 @@ body {
 }
 #llista_titol i {
     font-size: 4vmax;
-    color:#950E17;
+    color:#963fb3;
 }
 #llista_titol i:nth-child(1) {    /* primer <i> (miniatura de la foto) */
     flex: 2;
@@ -254,7 +254,7 @@ body {
 }
 .llista_fila i {    /* icona per esborrar la foto */
     flex: 1;
-    color: #950E17;
+    color: #4d0d44;
     font-size: 4vmax !important;
     cursor: pointer;
 }
