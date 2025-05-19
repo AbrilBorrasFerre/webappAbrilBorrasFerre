@@ -77,6 +77,7 @@ body {
     font-size: 3vmax;
     padding: 2vmin;
     margin: 1vmin;
+    font-family: Candara;
 }
 #div_foto {
     flex: 1;
